@@ -5,6 +5,27 @@ from matplotlib.animation import FuncAnimation
 import matplotlib.cm as cm
 import matplotlib.colors as mcolors
 
+"""
+All the simulation parameters and assumptions:
+n: number of particles
+L: box size
+r0: Fixed Interaction Radius (Absolute Number not relative of particle size)
+v: Desired particle speed
+rp1: primary particle radius
+rp2: secondary particle radius
+R1A: primary particle number fraction
+Initial angles are picked randomly from uniform distribution
+
+Uzawa Alogrithm is a optimization algorithm. The final velocities will depend upon the
+learning rate and max number of iterations allowed.
+
+noise: noise to add to the average direction (currently 0.5*normal distribution which equates to +- 0.5 radians = +-30 degrees)
+
+Density Dependent Velocity
+if Number of neighbours in interaction radius (r0) > 5 then the velocity output by uzawa Algorithm drops by
+a factor of 10
+"""
+
 def generate_random_packing(N, L, R1,R2, R1A = 0.85, max_iter=2000):
     """
     Generates a random packing of N particles of radius R 
